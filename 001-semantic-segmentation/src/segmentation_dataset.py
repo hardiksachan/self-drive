@@ -43,20 +43,20 @@ class SegmentationDataset(torch.utils.data.Dataset):
 
         # THINK LATER!!!
         if self.transform:
-            image = self.transforms(image)
-            semantic = self.transforms(semantic)  # maybe use a different transform
+            image = self.transform(image)
+            # semantic = self.transforms(semantic)  # maybe use a different transform
 
         image = torch.from_numpy(np.array(image)).float()
 
         semantic_single_channel = self.color_to_trainId[semantic[:, :, 0], semantic[:, :, 1], semantic[:, :, 2]]
         
         semantic = torch.from_numpy(semantic_single_channel).long()
-        if self.mode == "train":
-            semantic = torch.nn.functional.one_hot(
-                semantic, num_classes=self.n_classes
-            )  # Assuming 20 classes (adjust)
-        else:
-            # For validation, keep labels as integers for evaluation metrics like mIoU
-            pass
+        # if self.mode == "train":
+        #     semantic = torch.nn.functional.one_hot(
+        #         semantic, num_classes=self.n_classes
+        #     )  # Assuming 20 classes (adjust)
+        # else:
+        #     # For validation, keep labels as integers for evaluation metrics like mIoU
+        #     pass
 
         return image, semantic
