@@ -28,7 +28,7 @@ Currently we have two major goals/pipeline:
 - Python 3.8
 - CUDA 11.8
 - Pytorch
-
+  
   ```ps
    pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
    ```
@@ -38,6 +38,8 @@ Currently we have two major goals/pipeline:
   ```ps
   pip install opencv-python
   ```
+
+- Pandas
 
 ## Authors
 
