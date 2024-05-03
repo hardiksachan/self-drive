@@ -28,7 +28,7 @@ import time
 print('This is the start of training script')
 
 print('setting folders for logs and models')
-training_name = "with_resnet34_ft_ex_-2"
+training_name = "with_shufflenet_1_0x_ft_ex_-1"
 
 workspace_root = os.environ["SELF_DRIVE_CARLA_WORKSPACE"]
 project_workspace = os.path.join(workspace_root, "02-rl-steering", training_name)
@@ -63,9 +63,9 @@ else:
 
 model = PPO('MlpPolicy', env, verbose=1,learning_rate=0.001, tensorboard_log=logdir)
 
-TIMESTEPS = 100 # how long is each training iteration - individual steps
+TIMESTEPS = 400 # how long is each training iteration - individual steps
 iters = 0
-while iters<4:  # how many training iterations you want
+while iters<400:  # how many training iterations you want
 	iters += 1
 	print('Iteration ', iters,' is to commence...')
 	model.learn(total_timesteps=TIMESTEPS, reset_num_timesteps=False, tb_log_name=f"PPO" )
