@@ -56,12 +56,11 @@ model_files.sort(key=lambda x: os.path.getmtime(os.path.join(models_root_dir, x)
 if model_files:
     print(f"Loading model from {model_files[0]}")
     model = PPO.load(os.path.join(models_dir, model_files[0]), env=env)
+    model.tensorboard_log = logdir
 else:
     print("No previous model found, starting from scratch")
     model = PPO('MlpPolicy', env, verbose=1,learning_rate=0.001, tensorboard_log=logdir)
 
-
-model = PPO('MlpPolicy', env, verbose=1,learning_rate=0.001, tensorboard_log=logdir)
 
 TIMESTEPS = 400 # how long is each training iteration - individual steps
 iters = 0
